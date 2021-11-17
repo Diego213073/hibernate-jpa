@@ -1,5 +1,8 @@
 package org.hibernate.app.util;
 
+import lombok.Getter;
+
+@Getter
 public enum Pagos {
 
   DEBITO("debito"),
@@ -11,7 +14,4 @@ public enum Pagos {
     this.value = value;
   }
 
-  public String getValue() {
-    return value;
-  }
 }
