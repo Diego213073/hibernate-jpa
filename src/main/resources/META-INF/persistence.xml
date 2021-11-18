@@ -8,7 +8,9 @@
       <property name="jakarta.persistence.jdbc.password" value="12345"/>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+<!--
       <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+-->
     </properties>
   </persistence-unit>
 </persistence>
