@@ -1,7 +1,11 @@
 package org.hibernate.app;
 
 import jakarta.persistence.EntityManager;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
 import org.hibernate.app.model.Cliente;
+import org.hibernate.app.model.Direccion;
 import org.hibernate.app.model.Factura;
 import org.hibernate.app.util.JpaUtilPersistence;
 import org.hibernate.app.util.Pagos;
@@ -13,12 +17,20 @@ public class Main {
     EntityManager entityManager = JpaUtilPersistence.getEntityManager();
 
     try {
-      entityManager.getTransaction().begin();
-      Cliente cliente = Cliente.builder().nombre("Diego").apellido("Alejandro").metodoPago(Pagos.CREDITO.getValue())
-          .correo("diegorobles@gamil.com").build();
-      entityManager.persist(cliente);
-      Factura factura = Factura.builder().descripcion("Xioami Redmit note pro").cliente(cliente).total(5000L)
+
+
+      Direccion direccion = Direccion.builder().calle("San Francisco").numero("calle #21").build();
+
+      Cliente cliente = getClienteById(1,entityManager).get();
+
+      Factura factura = Factura.builder().descripcion("Libro de programación POO").cliente(cliente)
+          .total(3500L)
           .build();
+
+      cliente.getDireccionList().add(direccion);
+
+      entityManager.getTransaction().begin();
+      entityManager.merge(cliente);
       entityManager.persist(factura);
       entityManager.getTransaction().commit();
     } catch (Exception e) {
@@ -28,6 +40,11 @@ public class Main {
       entityManager.close();
     }
 
+  }
+
+
+  private static Optional<Cliente> getClienteById(Integer id, EntityManager entityManager) {
+    return Optional.ofNullable(entityManager.find(Cliente.class, id));
   }
 
 }
