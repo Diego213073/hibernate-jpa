@@ -56,18 +56,17 @@ public class Cliente {
 
 
   public Cliente() {
+    generarFechas = new GenerarFechas();
     direccionList = new ArrayList<>();
     facturaList = new ArrayList<>();
   }
 
-  public Cliente(String nombre, String apellido, String correo, String metodoPago,
-      GenerarFechas generarFechas) {
+  public Cliente(String nombre, String apellido, String correo, String metodoPago) {
     this();
     this.nombre = nombre;
     this.apellido = apellido;
     this.correo = correo;
     this.metodoPago = metodoPago;
-    this.generarFechas = generarFechas;
   }
 
   public void addFactura(Factura factura) {
