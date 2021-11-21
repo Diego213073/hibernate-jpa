@@ -22,7 +22,7 @@ public class Main {
       Direccion direccion2 = Direccion.builder().calle("San Francisco").numero("calle A64").build();
 
       Cliente cliente = new Cliente("Diego", "Roble", "Diegoalejandrorobles@gamil.com",
-          Pagos.DEBITO.getValue(), new GenerarFechas());
+          Pagos.DEBITO.getValue());
       cliente.getDireccionList().add(direccion);
       cliente.getDireccionList().add(direccion2);
 
