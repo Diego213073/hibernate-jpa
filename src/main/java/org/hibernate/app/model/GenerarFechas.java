@@ -9,7 +9,7 @@ import lombok.Getter;
 
 @Getter
 @Embeddable
-public class FechaCreacion {
+public class GenerarFechas {
 
   @Column(name ="fecha_creacion")
   private LocalDateTime fechaCreacion;
