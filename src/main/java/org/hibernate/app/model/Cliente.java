@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.util.ArrayList;
@@ -50,13 +51,13 @@ public class Cliente {
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
   private List<Factura> facturaList;
 
-
   @Embedded
-  private GenerarFechas generarFechas;
+  private GenerarFechas generarFechas = new GenerarFechas();
 
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
+  private ClienteDetalle clienteDetalle;
 
   public Cliente() {
-    generarFechas = new GenerarFechas();
     direccionList = new ArrayList<>();
     facturaList = new ArrayList<>();
   }
@@ -69,9 +70,19 @@ public class Cliente {
     this.metodoPago = metodoPago;
   }
 
+
+  public void addClienteDetalle(ClienteDetalle clienteDetalle) {
+    this.setClienteDetalle(clienteDetalle);
+    clienteDetalle.setCliente(this);
+  }
+
   public void addFactura(Factura factura) {
     this.facturaList.add(factura);
     factura.setCliente(this);
+  }
+
+  public void addDreccion(Direccion direccion){
+    this.direccionList.add(direccion);
   }
 
 }
