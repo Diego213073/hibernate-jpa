@@ -1,12 +1,11 @@
 package org.hibernate.app;
 
 import jakarta.persistence.EntityManager;
-import java.util.Arrays;
 import java.util.Optional;
 import org.hibernate.app.model.Cliente;
+import org.hibernate.app.model.ClienteDetalle;
 import org.hibernate.app.model.Direccion;
 import org.hibernate.app.model.Factura;
-import org.hibernate.app.model.GenerarFechas;
 import org.hibernate.app.util.JpaUtilPersistence;
 import org.hibernate.app.util.Pagos;
 
@@ -18,18 +17,12 @@ public class Main {
 
     try {
       entityManager.getTransaction().begin();
-      Direccion direccion = Direccion.builder().calle("El posón").numero("calle 54#").build();
-      Direccion direccion2 = Direccion.builder().calle("San Francisco").numero("calle A64").build();
 
-      Cliente cliente = new Cliente("Diego", "Roble", "Diegoalejandrorobles@gamil.com",
-          Pagos.DEBITO.getValue());
-      cliente.getDireccionList().add(direccion);
-      cliente.getDireccionList().add(direccion2);
+      Cliente cliente = new Cliente("Carlos", "Revolledo", "carlosrevo202@gmail.com", Pagos.CREDITO.getValue());
 
-      Factura factura = Factura.builder().descripcion("Libro de programación POO")
-          .total(3500L)
-          .build();
-      cliente.addFactura(factura);
+      cliente.addDreccion(Direccion.builder().calle("Permitral").numero("calle 64#").build());
+      cliente.addClienteDetalle(new ClienteDetalle(5000));
+      cliente.addFactura(new Factura("Teclado mecánico", 4300L));
 
       entityManager.persist(cliente);
       entityManager.getTransaction().commit();
