@@ -59,6 +59,9 @@ public class Cliente {
   private ClienteDetalle clienteDetalle;
 
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @JoinTable(name = "clientes_categorias", joinColumns = @JoinColumn(name = "id_cliente"),
+      inverseJoinColumns = @JoinColumn(name = "id_categoria"), uniqueConstraints = @UniqueConstraint(columnNames = {
+      "id_cliente", "id_categoria"}))
   private List<Categoria> categoriasList;
 
   public Cliente() {
@@ -86,8 +89,9 @@ public class Cliente {
     factura.setCliente(this);
   }
 
-  public void addCategorias(Categoria categorias){
+  public void addCategorias(Categoria categorias) {
     this.categoriasList.add(categorias);
+    categorias.getClienteList().add(this);
   }
 
   public void addDreccion(Direccion direccion) {
