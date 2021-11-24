@@ -21,9 +21,9 @@ public class Main {
 
       ClienteServiceImplement clienteServiceImplement = new ClienteServiceImplement(entityManager);
 
-      Categoria categorias = Categoria.builder().descripcion("Entretenimiento").puntos(2000).build();
-      Categoria categorias2 = Categoria.builder().descripcion("Calculo").puntos(2900).build();
-      Categoria categorias3 = Categoria.builder().descripcion("Diversion").puntos(2500).build();
+      Categoria categorias = new Categoria("Entretenimiento",2000);
+      Categoria categorias2 = new Categoria("Diversión",2000);
+      Categoria categorias3 = new Categoria("Terror",2000);
 
 
 
