@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @Entity
@@ -34,6 +35,10 @@ public class Factura {
 
   @Embedded
   private GenerarFechas generarFechas = new GenerarFechas();
+
+  public Factura(){
+
+  }
 
 
   public Factura(String descripcion, Long total){

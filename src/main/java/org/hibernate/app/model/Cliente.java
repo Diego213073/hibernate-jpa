@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -57,9 +58,13 @@ public class Cliente {
   @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
   private ClienteDetalle clienteDetalle;
 
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  private List<Categoria> categoriasList;
+
   public Cliente() {
     direccionList = new ArrayList<>();
     facturaList = new ArrayList<>();
+    categoriasList = new ArrayList<>();
   }
 
   public Cliente(String nombre, String apellido, String correo, String metodoPago) {
@@ -81,7 +86,11 @@ public class Cliente {
     factura.setCliente(this);
   }
 
-  public void addDreccion(Direccion direccion){
+  public void addCategorias(Categoria categorias){
+    this.categoriasList.add(categorias);
+  }
+
+  public void addDreccion(Direccion direccion) {
     this.direccionList.add(direccion);
   }
 

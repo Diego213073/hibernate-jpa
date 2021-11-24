@@ -34,6 +34,10 @@ public class ClienteDetalle {
   @JoinColumn(name = "id_cliente")
   private Cliente cliente;
 
+  public ClienteDetalle() {
+
+  }
+
 
   public ClienteDetalle(Integer puntosAcumulados) {
     this.puntosAcumulados = puntosAcumulados;
