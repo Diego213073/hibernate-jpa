@@ -16,12 +16,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name ="categorias")
-public class Categoria {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+@Table(name = "categorias")
+public class Categoria extends SuperEntityClass{
 
   private String descripcion;
 

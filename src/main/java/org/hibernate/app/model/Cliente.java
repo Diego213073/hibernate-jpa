@@ -25,12 +25,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "clientes")
 
-public class Cliente {
-
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+public class Cliente extends SuperEntityClass{
 
   private String nombre;
 
@@ -51,9 +46,6 @@ public class Cliente {
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
   private List<Factura> facturaList;
-
-  @Embedded
-  private GenerarFechas generarFechas = new GenerarFechas();
 
   @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cliente")
   private ClienteDetalle clienteDetalle;

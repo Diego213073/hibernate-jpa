@@ -17,22 +17,18 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "clientes_detalle")
-public class ClienteDetalle {
+public class ClienteDetalle extends SuperEntityClass{
 
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
 
   @Column(name = "puntos_acumulados")
   private Integer puntosAcumulados;
 
-  @Embedded
-  private GenerarFechas generarFechas = new GenerarFechas();
-
   @OneToOne
   @JoinColumn(name = "id_cliente")
   private Cliente cliente;
+
+  @Embedded
+  private GenerarFechas generarFechas = new GenerarFechas();
 
   public ClienteDetalle() {
 

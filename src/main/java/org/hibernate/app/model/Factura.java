@@ -17,12 +17,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "facturas")
-public class Factura {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name ="id_factura")
-  private Integer id;
+public class Factura extends SuperEntityClass{
 
   private String descripcion;
 
@@ -31,7 +26,6 @@ public class Factura {
   @ManyToOne
   @JoinColumn(name = "id_cliente")
   private Cliente cliente;
-
 
   @Embedded
   private GenerarFechas generarFechas = new GenerarFechas();
